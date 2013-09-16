@@ -26,13 +26,6 @@ class Showpad
 	private $debug = true;
 
 	/**
-	 * Password
-	 *
-	 * @var string
-	 */
-	private $password;
-
-	/**
 	 * Username
 	 *
 	 * @var string
