@@ -18,6 +18,9 @@ require "./config.ini.php";
 // define api
 $api = new Showpad($username, $apiKey);
 
+/**
+ * Get all tests
+ */
 // get users
 //$items = $api->users->getAll();
 
@@ -34,7 +37,16 @@ $api = new Showpad($username, $apiKey);
 //$items = $api->comments->getAll();
 
 // get tickets
-$items = $api->tickets->getAll();
+// $items = $api->tickets->getAll();
 
 // print items
 print_r($items);
+
+/**
+ * Create tests
+ */
+// add asset
+$insert = $api->assets->create($_SERVER['DOCUMENT_ROOT'] . '/empty-image.jpg');
+
+// print insert
+print_r($insert);

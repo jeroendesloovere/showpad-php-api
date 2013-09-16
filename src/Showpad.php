@@ -21,7 +21,7 @@ class Showpad
 	const API_version = 'v1';
 
 	// DEBUG
-	const DEBUG = false;
+	const DEBUG = true;
 
 	/**
 	 * API key
@@ -115,7 +115,7 @@ class Showpad
 		$start = microtime(true);
 		
 		// starting call
-		$this->log('Call to ' . $url . ': ' . $params);
+		$this->log('Call to ' . $url . ': ' . json_encode($params));
 		if(self::DEBUG) {
 			$curl_buffer = fopen('php://memory', 'w+');
 			curl_setopt($this->ch, CURLOPT_STDERR, $curl_buffer);
@@ -147,13 +147,13 @@ class Showpad
 
 		// decode result
 		$result = json_decode($response_body, true);
-
+/*
 		// error checking for cast errors
 		if(floor($info['http_code'] / 100) >= 4)
 		{
 			throw new ShowpadException('Cast error: ' . $result);
 		}
-		
+*/
 		// error checking
 		if($result['meta']['code'] != 200)
 		{
