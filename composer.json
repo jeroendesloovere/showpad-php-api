@@ -2,7 +2,7 @@
     "name": "siesqo/showpad-php-api",
     "type": "library",
     "version": "1.0.0",
-    "description": "This Showpad PHP Class makes connection to the Showpad API.",
+    "description": "This Showpad PHP class connects to the Showpad API.",
     "keywords": ["showpad", "php", "api"],
     "homepage": "https://github.com/siesqo/showpad-php-api",
     "license": "MIT",
