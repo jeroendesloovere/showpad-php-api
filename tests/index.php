@@ -46,7 +46,7 @@ $api = new Showpad($username, $apiKey);
  * Create tests
  */
 // add user
-//$insert = $api->users->create('Jeroenie', 'Desloovere', 'test@siesqo.be', 'deslooverej', 'nl');
+$insert = $api->users->create('Jeroenie', 'Desloovere', 'test@siesqo.be', 'deslooverej', 'nl');
  
 // add asset
 //$insert = $api->assets->create($_SERVER['DOCUMENT_ROOT'] . '/empty-image.jpg');
