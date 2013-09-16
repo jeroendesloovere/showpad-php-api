@@ -12,6 +12,7 @@ class Showpad
 	// API URL
 	const API_URL = 'https://[username].showpad.biz/api/';
 	const API_version = 'v1';
+	const DEBUG = false;
 
 	/**
 	 * API key
@@ -19,11 +20,6 @@ class Showpad
 	 * @var string
 	 */
 	private $apiKey;
-	
-	/**
-	 * Debug
-	 */
-	private $debug = true;
 
 	/**
 	 * Username
@@ -78,7 +74,7 @@ class Showpad
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Showpad-PHP/1.0.0');
-		curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
+		curl_setopt($ch, CURLOPT_VERBOSE, self::$DEBUG);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 		curl_setopt($ch, CURLOPT_TIMEOUT, $opts['timeout']);
 
@@ -90,7 +86,7 @@ class Showpad
 
 		$start = microtime(true);
 		$this->log('Call to ' . $url . ': ' . $params);
-		if($this->debug) {
+		if(self::$DEBUG) {
 			$curl_buffer = fopen('php://memory', 'w+');
 			curl_setopt($ch, CURLOPT_STDERR, $curl_buffer);
 		}
@@ -98,7 +94,7 @@ class Showpad
 		$response_body = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		$time = microtime(true) - $start;
-		if($this->debug) {
+		if(self::$DEBUG) {
 			rewind($curl_buffer);
 			$this->log(stream_get_contents($curl_buffer));
 			fclose($curl_buffer);
@@ -240,7 +236,7 @@ class Showpad
 	 */
 	public function log($value)
 	{
-		if($this->debug)
+		if(self::$DEBUG)
 		{
 			echo $value . '<br/><br/>';	
 		}
