@@ -101,21 +101,37 @@ class Showpad
 			throw new ShowpadException('Method type not supported.');	
 		}
 
-		// define curl options
-		curl_setopt($this->ch, CURLOPT_URL, $url . '?' . http_build_query($params));
-		curl_setopt($this->ch, CURLOPT_POSTFIELDS, $params);
+		// set method type to GET
+		if($method == 'GET')
+		{
+			// set to GET
+			curl_setopt($this->ch, CURLOPT_HTTPGET, true);
+			
+			// add params to url
+			if(count($params) > 0) $url .= '?' . http_build_query($params);
+		}
 
-		// set method type
-		if($method == 'GET') curl_setopt($this->ch, CURLOPT_HTTPGET, true);
-		elseif($method == 'POST') curl_setopt($this->ch, CURLOPT_POST, true);
+		// set method type to POST
+		elseif($method == 'POST')
+		{
+			curl_setopt($this->ch, CURLOPT_POST, true);
+			curl_setopt($this->ch, CURLOPT_POSTFIELDS, $params);
+		}
+
+		// set method type to PUT
 		elseif($method == 'PUT') curl_setopt($this->ch, CURLOPT_PUT, true);
+
+		// set method type to EVERYTHING ELSE
 		else curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $method);
+
+		// define curl options
+		curl_setopt($this->ch, CURLOPT_URL, $url);
 
 		// start timer
 		$start = microtime(true);
 		
 		// starting call
-		$this->log('Call to ' . $url . ': ' . json_encode($params));
+		$this->log('<br/><br/>' . $method . ' Call to ' . $url . ': ' . json_encode($params));
 		if(self::DEBUG) {
 			$curl_buffer = fopen('php://memory', 'w+');
 			curl_setopt($this->ch, CURLOPT_STDERR, $curl_buffer);

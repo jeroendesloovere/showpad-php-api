@@ -40,13 +40,16 @@ $api = new Showpad($username, $apiKey);
 // $items = $api->tickets->getAll();
 
 // print items
-print_r($items);
+//print_r($items);
 
 /**
  * Create tests
  */
+// add user
+//$insert = $api->users->create('Jeroenie', 'Desloovere', 'test@siesqo.be', 'deslooverej', 'nl');
+ 
 // add asset
-$insert = $api->assets->create($_SERVER['DOCUMENT_ROOT'] . '/empty-image.jpg');
+//$insert = $api->assets->create($_SERVER['DOCUMENT_ROOT'] . '/empty-image.jpg');
 
 // print insert
 print_r($insert);
