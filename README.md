@@ -4,6 +4,8 @@ This Showpad PHP wrapper class connects to the Showpad API.
 
 ## Work in progress
 
+[Jeroen Desloovere](https://github.com/deslooverej) started this class to test if it is possible to make connection to the API of Showpad. It was possible and the base is set for this class. All functions in this class work, excepts the assets->create is untested (didn't worked offline).
+
 ## Documentation
 
 The class is well documented inline. If you use a decent IDE you'll see that each method is documented with PHPDoc.
