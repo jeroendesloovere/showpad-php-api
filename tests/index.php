@@ -6,7 +6,7 @@
  * @author Jeroen Desloovere <jeroen@siesqo.be>
  */
 // require class
-require "./../showpad.php";
+require "./../src/Showpad.php";
 
 // define credentials
 $username = '';
@@ -19,22 +19,22 @@ require "./config.ini.php";
 $api = new Showpad($username, $apiKey);
 
 // get users
-//$items = $api->getUsers();
+//$items = $api->users->getAll();
 
 // get userGgroups
-//$items = $api->getUserGroups();
+//$items = $api->userGroups->getAll();
 
 // get assets
-//$items = $api->getAssets();
+//$items = $api->assets->getAll();
 
 // get tags
-//$items = $api->getTags();
+//$items = $api->tags->getAll();
 
 // get comments
-//$items = $api->getComments();
+//$items = $api->comments->getAll();
 
 // get tickets
-$items = $api->getTickets();
+$items = $api->tickets->getAll();
 
 // print items
 print_r($items);
