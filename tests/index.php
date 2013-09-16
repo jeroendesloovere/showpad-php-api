@@ -7,6 +7,12 @@
  */
 // require class
 require "./../showpad.php";
+
+// define credentials
+$username = '';
+$apiKey = '';
+
+// redefine credentials
 require "./config.ini.php";
 
 // define api
