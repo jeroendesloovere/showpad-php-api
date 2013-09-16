@@ -16,10 +16,12 @@ require_once 'Showpad/UserGroups.php';
  */
 class Showpad
 {
-	// API URL
+	// API
 	const API_URL = 'https://[username].showpad.biz/api/';
 	const API_version = 'v1';
-	const DEBUG = true;
+
+	// DEBUG
+	const DEBUG = false;
 
 	/**
 	 * API key
@@ -109,15 +111,23 @@ class Showpad
 		elseif($method == 'PUT') curl_setopt($this->ch, CURLOPT_PUT, true);
 		else curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $method);
 
+		// start timer
 		$start = microtime(true);
+		
+		// starting call
 		$this->log('Call to ' . $url . ': ' . $params);
 		if(self::DEBUG) {
 			$curl_buffer = fopen('php://memory', 'w+');
 			curl_setopt($this->ch, CURLOPT_STDERR, $curl_buffer);
 		}
 
+		// execute curl
 		$response_body = curl_exec($this->ch);
+
+		// get more info about response
 		$info = curl_getinfo($this->ch);
+
+		// define time needed to run
 		$time = microtime(true) - $start;
 		if(self::DEBUG) {
 			rewind($curl_buffer);
@@ -125,16 +135,23 @@ class Showpad
 			fclose($curl_buffer);
 		}
 
+		// log result
 		$this->log('Completed in ' . number_format($time * 1000, 2) . 'ms');
 		$this->log('Got response: ' . $response_body);
 
-		if(curl_error($this->ch)) {
+		// curl error happened
+		if(curl_error($this->ch))
+		{
 			throw new ShowpadException("API call to $url failed: " . curl_error($this->ch));
 		}
+
+		// decode result
 		$result = json_decode($response_body, true);
 
-		if(floor($info['http_code'] / 100) >= 4) {
-			throw $this->castError($result);
+		// error checking for cast errors
+		if(floor($info['http_code'] / 100) >= 4)
+		{
+			throw new ShowpadException('Cast error: ' . $result);
 		}
 		
 		// error checking
@@ -166,6 +183,4 @@ class Showpad
  *
  * @author Jeroen Desloovere <jeroen@siesqo.be>
  */
-class ShowpadException extends Exception
-{
-}
+class ShowpadException extends Exception {}
