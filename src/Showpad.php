@@ -158,18 +158,12 @@ class Showpad
 		// curl error happened
 		if(curl_error($this->ch))
 		{
-			throw new ShowpadException("API call to $url failed: " . curl_error($this->ch));
+			throw new ShowpadException("API call to " . $url . " failed: " . curl_error($this->ch));
 		}
 
 		// decode result
 		$result = json_decode($response_body, true);
-/*
-		// error checking for cast errors
-		if(floor($info['http_code'] / 100) >= 4)
-		{
-			throw new ShowpadException('Cast error: ' . $result);
-		}
-*/
+
 		// error checking
 		if($result['meta']['code'] != 200)
 		{
