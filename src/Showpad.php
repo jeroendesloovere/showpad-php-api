@@ -3,7 +3,7 @@
 /**
  * Showpad
  *
- * Use this class to connect to the Showpad API.
+ * This Showpad PHP wrapper connects to the Showpad API.
  *
  * @author Jeroen Desloovere <jeroen@siesqo.be>
  */
