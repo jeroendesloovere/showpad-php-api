@@ -1,12 +1,5 @@
 <?php
 
-require_once 'Showpad/Assets.php';
-require_once 'Showpad/Comments.php';
-require_once 'Showpad/Tags.php';
-require_once 'Showpad/Tickets.php';
-require_once 'Showpad/Users.php';
-require_once 'Showpad/UserGroups.php';
-
 /**
  * Showpad
  *
@@ -14,6 +7,14 @@ require_once 'Showpad/UserGroups.php';
  *
  * @author Jeroen Desloovere <jeroen@siesqo.be>
  */
+
+require_once 'Showpad/Assets.php';
+require_once 'Showpad/Comments.php';
+require_once 'Showpad/Tags.php';
+require_once 'Showpad/Tickets.php';
+require_once 'Showpad/Users.php';
+require_once 'Showpad/UserGroups.php';
+
 class Showpad
 {
 	// API
