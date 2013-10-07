@@ -16,7 +16,7 @@ $api = new Showpad($username, $apiKey);
 $items = $api->users->getAll();
 
 // get all user groups
-//$items = $api->userGroups->getAll();
+$items = $api->userGroups->getAll();
 ```
 [Check all possible functions](./tests/index.php)
 
