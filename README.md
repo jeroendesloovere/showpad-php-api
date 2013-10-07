@@ -6,6 +6,20 @@ This Showpad PHP wrapper class connects to the Showpad API.
 
 [Jeroen Desloovere](https://github.com/deslooverej) started this class to test if it is possible to make connection to the API of Showpad. It was possible and the base is set for this class. All functions in this class work, excepts the assets->create is untested (didn't worked offline). Every subClass has its getAll() function, other functions aren't defined yet.
 
+## Example
+
+```
+// define api
+$api = new Showpad($username, $apiKey);
+
+// get all users
+$items = $api->users->getAll();
+
+// get all user groups
+//$items = $api->userGroups->getAll();
+```
+[Check all possible functions](./tests/index.php)
+
 ## Documentation
 
 The class is well documented inline. If you use a decent IDE you'll see that each method is documented with PHPDoc.
