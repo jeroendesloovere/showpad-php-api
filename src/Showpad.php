@@ -61,17 +61,17 @@ class Showpad
 		$timeout = 600;
 
 		// define curl
-		$this->ch = curl_init();
+		$this->curl = curl_init();
 
 		// set options for curl
-		curl_setopt($this->ch, CURLOPT_HEADER, false);
-		curl_setopt($this->ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-		curl_setopt($this->ch, CURLOPT_HTTPHEADER, array('ShowpadAuthorizationKey: ' . $this->apiKey));
-		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($this->ch, CURLOPT_USERAGENT, 'Showpad-PHP/1.0.0');
-		curl_setopt($this->ch, CURLOPT_VERBOSE, self::DEBUG);
-		curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, 30);
-		curl_setopt($this->ch, CURLOPT_TIMEOUT, $timeout);
+		curl_setopt($this->curl, CURLOPT_HEADER, false);
+		curl_setopt($this->curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($this->curl, CURLOPT_HTTPHEADER, array('ShowpadAuthorizationKey: ' . $this->apiKey));
+		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($this->curl, CURLOPT_USERAGENT, 'Showpad-PHP/1.0.0');
+		curl_setopt($this->curl, CURLOPT_VERBOSE, self::DEBUG);
+		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 30);
+		curl_setopt($this->curl, CURLOPT_TIMEOUT, $timeout);
 
 		// define items
 		$this->assets = new ShowpadAssets($this);
@@ -106,7 +106,7 @@ class Showpad
 		if($method == 'GET')
 		{
 			// set to GET
-			curl_setopt($this->ch, CURLOPT_HTTPGET, true);
+			curl_setopt($this->curl, CURLOPT_HTTPGET, true);
 			
 			// add params to url
 			if(count($params) > 0) $url .= '?' . http_build_query($params);
@@ -115,18 +115,18 @@ class Showpad
 		// set method type to POST
 		elseif($method == 'POST')
 		{
-			curl_setopt($this->ch, CURLOPT_POST, true);
-			curl_setopt($this->ch, CURLOPT_POSTFIELDS, $params);
+			curl_setopt($this->curl, CURLOPT_POST, true);
+			curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params);
 		}
 
 		// set method type to PUT
-		elseif($method == 'PUT') curl_setopt($this->ch, CURLOPT_PUT, true);
+		elseif($method == 'PUT') curl_setopt($this->curl, CURLOPT_PUT, true);
 
 		// set method type to EVERYTHING ELSE
-		else curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $method);
+		else curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
 
 		// define curl options
-		curl_setopt($this->ch, CURLOPT_URL, $url);
+		curl_setopt($this->curl, CURLOPT_URL, $url);
 
 		// start timer
 		$start = microtime(true);
@@ -135,14 +135,14 @@ class Showpad
 		$this->log('<br/><br/>' . $method . ' Call to ' . $url . ': ' . json_encode($params));
 		if(self::DEBUG) {
 			$curl_buffer = fopen('php://memory', 'w+');
-			curl_setopt($this->ch, CURLOPT_STDERR, $curl_buffer);
+			curl_setopt($this->curl, CURLOPT_STDERR, $curl_buffer);
 		}
 
 		// execute curl
-		$response_body = curl_exec($this->ch);
+		$response_body = curl_exec($this->curl);
 
 		// get more info about response
-		$info = curl_getinfo($this->ch);
+		$info = curl_getinfo($this->curl);
 
 		// define time needed to run
 		$time = microtime(true) - $start;
@@ -157,9 +157,9 @@ class Showpad
 		$this->log('Got response: ' . $response_body);
 
 		// curl error happened
-		if(curl_error($this->ch))
+		if(curl_error($this->curl))
 		{
-			throw new ShowpadException("API call to " . $url . " failed: " . curl_error($this->ch));
+			throw new ShowpadException("API call to " . $url . " failed: " . curl_error($this->curl));
 		}
 
 		// decode result
