@@ -29,21 +29,21 @@ class Showpad
 	 *
 	 * @var string
 	 */
-	private $apiKey;
+	protected $apiKey;
 
 	/**
 	 * CURL
 	 *
 	 * @var curl
 	 */
-	private $ch;
+	protected $curl;
 
 	/**
 	 * Username
 	 *
 	 * @var string
 	 */
-	private $username;
+	protected $username;
 
 	/**
 	 * Construct
