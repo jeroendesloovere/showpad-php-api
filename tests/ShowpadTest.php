@@ -4,6 +4,7 @@ namespace JeroenDesloovere\Showpad;
 
 // required to load
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../examples/credentials.php';
 
 /*
  * This file is part of the Showpad PHP class from Jeroen Desloovere.
