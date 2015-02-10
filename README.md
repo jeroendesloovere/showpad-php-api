@@ -1,24 +1,50 @@
 # Showpad PHP wrapper class
 
+[![Latest Stable Version](http://img.shields.io/packagist/v/jeroendesloovere/showpad-php-api.svg)](https://packagist.org/packages/jeroendesloovere/showpad-php-api)
+[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/jeroendesloovere/showpad-php-api/blob/master/LICENSE)
+[![Build Status](http://img.shields.io/travis/jeroendesloovere/showpad-php-api.svg)](https://travis-ci.org/jeroendesloovere/showpad-php-api)
+
 This Showpad PHP wrapper class connects to the Showpad API.
 
-## Work in progress
+## Usage
 
-[Jeroen Desloovere](https://github.com/jeroendesloovere) started this class to test if it is possible to make connection to the API of Showpad. It was possible and the base is set for this class. All functions in this class work, excepts the assets->create is untested (didn't worked offline). Every subClass has its getAll() function, other functions aren't defined yet.
+### Installation
 
-## Example
+``` json
+{
+    "require": {
+        "jeroendesloovere/showpad-php-api": "1.0.*"
+    }
+}
+```
+
+> Adding this code in your `composer.json` file will get the [latest GitHub package](https://packagist.org/packages/jeroendesloovere/:package_name) using [Composer](https://getcomposer.org).
+
+### Example
 
 ```
+$showpadUsername = '';
+$showpadApiKey   = ''; 
+
 // define api
-$api = new Showpad($username, $apiKey);
+$api = new JeroenDesloovere\Showpad\Showpad(
+    $showpadUsername,
+    $showpadApiKey
+);
 
 // get all users
 $items = $api->users->getAll();
 
 // get all user groups
 $items = $api->userGroups->getAll();
+...
 ```
-[Check all possible functions](./tests/index.php)
+> [View all examples](/examples/example.php) or check [the Showpad class](/src/).
+
+
+## Work in progress
+
+[Jeroen Desloovere](https://github.com/jeroendesloovere) started this class to test if it is possible to make connection to the API of Showpad. It was possible and the base is set for this class. All functions in this class work, excepts the assets->create is untested (didn't worked offline). Every subClass has its getAll() function, other functions aren't defined yet.
 
 ## Documentation
 
@@ -35,4 +61,4 @@ More info on how to work with GitHub on help.github.com.
 
 ## License
 
-The module is licensed under [MIT](./LICENSE.md). In short, this license allows you to do everything as long as the copyright statement stays present.
+The module is licensed under [MIT](./LICENSE). In short, this license allows you to do everything as long as the copyright statement stays present.
