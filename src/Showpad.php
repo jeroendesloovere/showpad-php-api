@@ -1,20 +1,29 @@
 <?php
 
+namespace JeroenDesloovere\Showpad;
+
+/*
+ * This file is part of the Showpad PHP API connection class from Jeroen Desloovere.
+ *
+ * For the full copyright and license information, please view the license
+ * file that was distributed with this source code.
+ */
+
+use JeroenDesloovere\Showpad\Exception as ShowpadException;
+use JeroenDesloovere\Showpad\Objects\Assets;
+use JeroenDesloovere\Showpad\Objects\Comments;
+use JeroenDesloovere\Showpad\Objects\Tags;
+use JeroenDesloovere\Showpad\Objects\Tickets;
+use JeroenDesloovere\Showpad\Objects\Users;
+use JeroenDesloovere\Showpad\Objects\UserGroups;
+
 /**
  * Showpad
  *
  * This Showpad PHP wrapper connects to the Showpad API.
  *
- * @author Jeroen Desloovere <jeroen@siesqo.be>
+ * @author Jeroen Desloovere <info@jeroendesloovere.be>
  */
-
-require_once 'Showpad/Assets.php';
-require_once 'Showpad/Comments.php';
-require_once 'Showpad/Tags.php';
-require_once 'Showpad/Tickets.php';
-require_once 'Showpad/Users.php';
-require_once 'Showpad/UserGroups.php';
-
 class Showpad
 {
     // API
@@ -74,12 +83,12 @@ class Showpad
         curl_setopt($this->curl, CURLOPT_TIMEOUT, $timeout);
 
         // define items
-        $this->assets = new ShowpadAssets($this);
-        $this->comments = new ShowpadComments($this);
-        $this->tags = new ShowpadTags($this);
-        $this->tickets = new ShowpadTickets($this);
-        $this->users = new ShowpadUsers($this);
-        $this->userGroups = new ShowpadUserGroups($this);
+        $this->assets = new Assets($this);
+        $this->comments = new Comments($this);
+        $this->tags = new Tags($this);
+        $this->tickets = new Tickets($this);
+        $this->users = new Users($this);
+        $this->userGroups = new UserGroups($this);
     }
 
     /**
@@ -186,14 +195,4 @@ class Showpad
             echo $value . '<br/><br/>';
         }
     }
-}
-
-
-/**
- * Showpad Exception class
- *
- * @author Jeroen Desloovere <jeroen@siesqo.be>
- */
-class ShowpadException extends Exception
-{
 }

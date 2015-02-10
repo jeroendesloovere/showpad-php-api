@@ -1,24 +1,25 @@
 <?php
 
+namespace JeroenDesloovere\Showpad\Objects;
+
+/*
+ * This file is part of the Showpad PHP API connection class from Jeroen Desloovere.
+ *
+ * For the full copyright and license information, please view the license
+ * file that was distributed with this source code.
+ */
+
+use JeroenDesloovere\Showpad\Objects\Object;
+
 /**
  * Showpad Users
  *
  * Use this class to connect to the Showpad API.
  *
- * @author Jeroen Desloovere <jeroen@siesqo.be>
+ * @author Jeroen Desloovere <info@jeroendesloovere.be>
  */
-class ShowpadUsers
+class Users extends Object
 {
-    /**
-     * Construct
-     *
-     * @param Showpad $master
-     */
-    public function __construct(Showpad $master)
-    {
-        $this->master = $master;
-    }
-
     /**
      * Create user
      *
@@ -34,9 +35,18 @@ class ShowpadUsers
      * @param string $sendMailToUser[optional] Notify the user about this update
      * @return array
      */
-    public function create($firstName, $lastName, $email, $userName, $language,
-        $userType = 'tablet', $isActive = true, $password = null, $externalId = null, $sendMailToUser = false)
-    {
+    public function create(
+        $firstName,
+        $lastName,
+        $email,
+        $userName,
+        $language,
+        $userType = 'tablet',
+        $isActive = true,
+        $password = null,
+        $externalId = null,
+        $sendMailToUser = false
+    ) {
         // init parameters
         $params = array();
 

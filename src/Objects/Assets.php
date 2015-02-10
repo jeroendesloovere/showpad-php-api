@@ -1,24 +1,25 @@
 <?php
 
+namespace JeroenDesloovere\Showpad\Objects;
+
+/*
+ * This file is part of the Showpad PHP class from Jeroen Desloovere.
+ *
+ * For the full copyright and license information, please view the license
+ * file that was distributed with this source code.
+ */
+
+use JeroenDesloovere\Showpad\Objects\Object;
+
 /**
  * Showpad Assets
  *
  * Use this class to connect to the Showpad API.
  *
- * @author Jeroen Desloovere <jeroen@siesqo.be>
+ * @author Jeroen Desloovere <info@jeroendesloovere.be>
  */
-class ShowpadAssets
+class Assets extends Object
 {
-    /**
-     * Construct
-     *
-     * @param Showpad $master
-     */
-    public function __construct(Showpad $master)
-    {
-        $this->master = $master;
-    }
-
     /**
      * Create asset
      * @todo
@@ -31,8 +32,14 @@ class ShowpadAssets
      * @param bool $isSensitive[optional] bool Set to true if you do not want this file to be visible in Kiosk mode on the tablet
      * @return array
      */
-    public function create($filePath, $description = '', $externalId = null, $isShareable = true, $isAnnotable = true, $isSensitive = true)
-    {
+    public function create(
+        $filePath,
+        $description = '',
+        $externalId = null,
+        $isShareable = true,
+        $isAnnotable = true,
+        $isSensitive = true
+    ) {
         // init parameters
         $params = array();
 

@@ -1,18 +1,23 @@
 {
-    "name": "siesqo/showpad-php-api",
+    "name": "jeroendesloovere/showpad-php-api",
     "type": "library",
     "version": "1.0.0",
     "description": "This Showpad PHP class connects to the Showpad API.",
     "keywords": ["showpad", "php", "api"],
-    "homepage": "https://github.com/siesqo/showpad-php-api",
+    "homepage": "https://github.com/jeroendesloovere/showpad-php-api",
     "license": "MIT",
-    "authors": [{"name": "Jeroen Desloovere", "email": "jeroen@siesqo.be", "homepage": "http://siesqo.be", "role": "Developer"}],
+    "authors": [
+        {
+            "name": "Jeroen Desloovere",
+            "email": "info@jeroendesloovere.be",
+            "homepage": "http://jeroendesloovere.be",
+			"role": "Owner"
+        }
+    ],
     "require": {
-        "php": ">=5.2.0"
+        "php": ">=5.3.3"
     },
     "autoload": {
-        "psr-0": {
-            "Showpad": "src/"
-        }
+        "psr-4": { "JeroenDesloovere\\Showpad\\": "src/" }
     }
 }
