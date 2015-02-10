@@ -38,8 +38,12 @@ class ShowpadAssets
 
         // define parameters
         $params['file'] = (string) $filePath;
-        if(isset($description)) $params['description'] = (string) $description;
-        if(isset($externalId)) $params['externalId'] = (string) $externalId;
+        if (isset($description)) {
+            $params['description'] = (string) $description;
+        }
+        if (isset($externalId)) {
+            $params['externalId'] = (string) $externalId;
+        }
         $params['isShareable'] = (bool) $isShareable;
         $params['isAnnotable'] = (bool) $isAnnotable;
         $params['isSensitive'] = (bool) $isSensitive;

@@ -97,33 +97,36 @@ class Showpad
         $method = strtoupper($method);
 
         // error checking
-        if(!in_array($method, array('DELETE', 'GET', 'LINK', 'POST', 'PUT', 'UNLINK')))
-        {
-            throw new ShowpadException('Method type not supported.');    
+        if (!in_array($method, array('DELETE', 'GET', 'LINK', 'POST', 'PUT', 'UNLINK'))) {
+            throw new ShowpadException('Method type not supported.');
         }
 
         // set method type to GET
-        if($method == 'GET')
-        {
+        if ($method == 'GET') {
             // set to GET
             curl_setopt($this->curl, CURLOPT_HTTPGET, true);
             
             // add params to url
-            if(count($params) > 0) $url .= '?' . http_build_query($params);
+            if (count($params) > 0) {
+                $url .= '?' . http_build_query($params);
+            }
         }
 
         // set method type to POST
-        elseif($method == 'POST')
-        {
+        elseif ($method == 'POST') {
             curl_setopt($this->curl, CURLOPT_POST, true);
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params);
         }
 
         // set method type to PUT
-        elseif($method == 'PUT') curl_setopt($this->curl, CURLOPT_PUT, true);
+        elseif ($method == 'PUT') {
+            curl_setopt($this->curl, CURLOPT_PUT, true);
+        }
 
         // set method type to EVERYTHING ELSE
-        else curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
+        else {
+            curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
+        }
 
         // define curl options
         curl_setopt($this->curl, CURLOPT_URL, $url);
@@ -133,7 +136,7 @@ class Showpad
         
         // starting call
         $this->log('<br/><br/>' . $method . ' Call to ' . $url . ': ' . json_encode($params));
-        if(self::DEBUG) {
+        if (self::DEBUG) {
             $curl_buffer = fopen('php://memory', 'w+');
             curl_setopt($this->curl, CURLOPT_STDERR, $curl_buffer);
         }
@@ -146,7 +149,7 @@ class Showpad
 
         // define time needed to run
         $time = microtime(true) - $start;
-        if(self::DEBUG) {
+        if (self::DEBUG) {
             rewind($curl_buffer);
             $this->log(stream_get_contents($curl_buffer));
             fclose($curl_buffer);
@@ -157,8 +160,7 @@ class Showpad
         $this->log('Got response: ' . $response_body);
 
         // curl error happened
-        if(curl_error($this->curl))
-        {
+        if (curl_error($this->curl)) {
             throw new ShowpadException("API call to " . $url . " failed: " . curl_error($this->curl));
         }
 
@@ -166,8 +168,7 @@ class Showpad
         $result = json_decode($response_body, true);
 
         // error checking
-        if($result['meta']['code'] != 200)
-        {
+        if ($result['meta']['code'] != 200) {
             throw new ShowpadException($result['meta']['message']);
         }
 
@@ -181,9 +182,8 @@ class Showpad
      */
     public function log($value)
     {
-        if(self::DEBUG)
-        {
-            echo $value . '<br/><br/>';    
+        if (self::DEBUG) {
+            echo $value . '<br/><br/>';
         }
     }
 }
@@ -194,4 +194,6 @@ class Showpad
  *
  * @author Jeroen Desloovere <jeroen@siesqo.be>
  */
-class ShowpadException extends Exception {}
+class ShowpadException extends Exception
+{
+}

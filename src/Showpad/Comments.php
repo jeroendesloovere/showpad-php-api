@@ -29,7 +29,7 @@ class ShowpadComments
      *         - externalId string Query for comments with the given external Id
      *         - isUnregisteredUserComment bool Query for comments created by or not created by an unregistered user
      *         - unregisteredUserFirstName string Query for the first name of an unregistered user
-     *         - unregisteredUserLastName string Query for the last name of an unregistered user    
+     *         - unregisteredUserLastName string Query for the last name of an unregistered user
      * @return array
      */
     public function getAll($params = array())

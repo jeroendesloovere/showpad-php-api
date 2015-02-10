@@ -48,8 +48,12 @@ class ShowpadUsers
         $params['language'] = (string) $language;
         $params['userType'] = (string) $userType;
         $params['isActive'] = (bool) $isActive;
-        if(isset($password)) $params['password'] = (string) $password;
-        if(isset($externalId)) $params['externalId'] = (string) $externalId;
+        if (isset($password)) {
+            $params['password'] = (string) $password;
+        }
+        if (isset($externalId)) {
+            $params['externalId'] = (string) $externalId;
+        }
         $params['sendMailToUser'] = (bool) $sendMailToUser;
 
         // return
