@@ -18,7 +18,7 @@ This Showpad PHP wrapper class connects to the Showpad API.
 }
 ```
 
-> Adding this code in your `composer.json` file will get the [latest GitHub package](https://packagist.org/packages/jeroendesloovere/:package_name) using [Composer](https://getcomposer.org).
+> Adding this code in your `composer.json` file will get the [latest GitHub package](https://packagist.org/packages/jeroendesloovere/showpad-php-api) using [Composer](https://getcomposer.org).
 
 ### Example
 
